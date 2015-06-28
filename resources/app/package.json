@@ -1,0 +1,20 @@
+{
+  "name": "electron",
+  "version": "0.1.0",
+  "productName": "Electron",
+  "description": "Cross-platform demonstration application using Electron(formerly atom-shell).",
+  "main": "main.js",
+  "devDependencies": {
+    "bower": "^1.4.1",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-cssmin": "^0.1.7",
+    "gulp-less": "^3.0.3",
+    "gulp-rename": "^1.2.2",
+    "rimraf": "^2.4.0"
+  },
+  "dependencies": {
+    "async": "^1.2.1",
+    "less": "^2.5.1"
+  }
+}

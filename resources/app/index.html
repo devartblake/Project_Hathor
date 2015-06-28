@@ -1,0 +1,83 @@
+<html>
+<head>
+  <title>Electron</title>
+  <link rel="stylesheet" type="text/css" href="styles/app.css" />
+  <link rel="stylesheet" type="text/css" href="styles/bootstrap.css">
+</head>
+<body>
+  <script>
+    var execPath = require('remote').process.execPath;
+    var command = execPath + ' path-to-your-app';
+
+    // Status update
+    var ipc = require('ipc');
+    var updateOnlineStatus = function() {
+      ipc.send('online-status-changed', navigator.onLine ? 'online' : 'offline');
+    };
+
+    document.onclick = function(e) {
+      e.preventDefault();
+      if (e.target.tagName == 'A')
+        require('shell').openExternal(e.target.href);
+      return false;
+    };
+    document.ondragover = document.ondrop = function(e) {
+      e.preventDefault();
+      return false;
+    };
+
+    window.addEventListener('online', updateOnlineStatus);
+    window.addEventListener('offline', updateOnlineStatus);
+
+    updateOnlineStatus();
+  </script>
+
+  <h2 style="-webkit-app-region: drag">Welcome to Electron</h2>
+
+  <p>
+  To run your app with Electron, execute the following command under your
+  Console (or Terminal):
+  </p>
+
+  <script>document.write('<pre>' + command + '</pre>')</script>
+
+  <p>
+  The <code>path-to-your-app</code> should be the path to your own Electron
+  app, you can read the <a href='https://github.com/atom/electron/blob/master/docs/tutorial/quick-start.md'>quick start</a>
+  guide in Electron's <a href='https://github.com/atom/electron/blob/master/docs'>docs</a>
+  on how to write one.
+  </p>
+
+  <p>
+  Or you can just drag your app here to run it:
+  </p>
+
+  <div id="holder">
+    Drag your app here to run it
+  </div>
+
+  <script>
+    var holder = document.getElementById('holder');
+    holder.ondragover = function () {
+      this.className = 'hover';
+      return false;
+    };
+    holder.ondragleave = holder.ondragend = function () {
+      this.className = '';
+      return false;
+    };
+    holder.ondrop = function (e) {
+      this.className = '';
+      e.preventDefault();
+
+      var file = e.dataTransfer.files[0];
+      require('child_process').execFile(execPath, [file.path], {
+        detached: true, stdio: 'ignore'
+      }).unref();
+      return false;
+    };
+  </script>
+  <script src="scripts/jquery/jquery.js"></script>
+  <script src="scripts/bootstrap/js/bootstrap.js"></script>
+</body>
+</html>
