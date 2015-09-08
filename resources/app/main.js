@@ -3,7 +3,13 @@ var dialog = require('dialog');
 var fs = require('fs');
 var path = require('path');
 var Menu = require('menu');
+var server = require('./server');
 var BrowserWindow = require('browser-window');
+
+// Server
+server(function(port) {
+  window.serverPort = port;
+});
 
 // Quit when all windows are closed and no other one is listening to this.
 app.on('window-all-closed', function() {
@@ -31,7 +37,7 @@ for (var i in argv) {
   }
 }
 
-// Create default menu.
+//Create default menu.
 app.once('ready', function() {
   var template;
   if (process.platform == 'darwin') {
@@ -266,7 +272,6 @@ app.once('ready', function() {
       }
     ];
   }
-
   var menu = Menu.buildFromTemplate(template);
   Menu.setApplicationMenu(menu);
 });

@@ -1,5 +1,6 @@
 var app = require('app');
 var ipc = require('ipc');
+var server = require('./server');
 var BrowserWindow = require('browser-window');
 
 var mainWindow = null;
@@ -11,6 +12,7 @@ app.on('window-all-closed', function() {
 
 app.on('ready', function() {
   mainWindow = new BrowserWindow({
+  	title: 'Hathor',
     width: 800,
     height: 600,
     'auto-hide-menu-bar': false,
@@ -20,6 +22,15 @@ app.on('ready', function() {
   mainWindow.focus();
 });
 
-ipc.on('online-status-changed', function(event, status) {
-	console.log(status);
+
+ipc.on('close', function() {
+  app.quit()
+});
+
+ipc.on('minimize', function() {
+	mainWindow.minimize();
+});
+
+server(function(port) {
+    window.serverPort = port;
 });

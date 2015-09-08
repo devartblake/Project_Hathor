@@ -1,0 +1,75 @@
+@base-color: #FFF;
+@body-bg: #F5F5F5;
+@body-padding: 30px;
+@border-pre: 1px solid #DDD;
+@text-color: #555;
+@text-h2-color: #2B6CC2;
+@link-color: #2B6CC2;
+@link-hover-color: #3CDEF3;
+@font-family-base: 'Open Sans',Helvetica,Arial,sans-serif;
+@font-family-h2: 'Crimson Text',Georgia,serif;
+@font-family-pre: 'Menlo','Lucida Console',monospace;
+@font-size: 12px;
+@font-weight-base: 400;
+@line-height: 16px;
+@line-height-base: 1.1;
+@padding-pre: 6px 10px;
+@pre-bg: #F8F8F8;
+@margin-base: 0 auto;
+@height-base: 100px;
+
+
+body {
+	color: @text-color;
+	font-family: @font-family-base;
+	padding: @body-padding;
+	background-color: @body-bg;
+}
+
+h2 {
+	color: @text-h2-color;
+	font-family: @font-family-h2;
+	font-weight: @font-weight-base;
+	line-height: @line-height-base;
+	letter-spacing: -0.015em;
+}
+
+a {
+	color: @link-color;
+	text-decoration: none;
+
+	&:hover {
+		color: @link-hover-color;
+		text-decoration: underline;
+	}
+}
+
+pre {
+	white-space: pre-wrap;
+	font-size: @font-size + 1;
+	line-height: @line-height + 3;
+	overflow: auto;
+	padding: @padding-pre;
+}
+
+pre,code {
+	font-family: @font-family-pre;
+	border: @border-pre;
+	background-color: @pre-bg;
+	border-radius: 3px;
+}
+
+#holder {
+	border: 4px dashed #CCC;
+	margin: @margin-base;
+	height: @height-base + 200;
+	color: #35EDF6;
+	font-size: @font-size + 28;
+	line-height: @line-height + 184;
+	text-align: center;
+	-webkit-user-select: none;
+	.hover {
+		border: 4px dasehed #999;
+		color: @base-color;
+	}
+}

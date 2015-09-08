@@ -2,20 +2,13 @@
 <head>
   <meta charset="uft-8"/>
   <title>Electron</title>
-  <link rel="stylesheet" type="text/css" href="styles/app.css" />
-  <link rel="stylesheet" type="text/css" href="styles/bootstrap.css">
-  <link rel="stylesheet" type="text/css" href="styles/font-awesome.css">
+  <link rel="stylesheet" type="text/css" href="static/css/app.min.css" />
+  <link rel="stylesheet" type="text/css" href="static/css/index.css">
 </head>
 <body>
   <script>
     var execPath = require('remote').process.execPath;
     var command = execPath + ' path-to-your-app';
-
-    // Status update
-    var ipc = require('ipc');
-    var updateOnlineStatus = function() {
-      ipc.send('online-status-changed', navigator.onLine ? 'online' : 'offline');
-    };
 
     document.onclick = function(e) {
       e.preventDefault();
@@ -26,12 +19,7 @@
     document.ondragover = document.ondrop = function(e) {
       e.preventDefault();
       return false;
-    };
-
-    window.addEventListener('online', updateOnlineStatus);
-    window.addEventListener('offline', updateOnlineStatus);
-
-    updateOnlineStatus();
+    };    
   </script>
 
   <h2 style="-webkit-app-region: drag">Welcome to Electron</h2>
@@ -79,9 +67,29 @@
       return false;
     };
   </script>
+  
   <script>
-  window.$ = window.jQuery = require('./scripts/jquery/jquery.js');
-  </script>
-  <script src="scripts/bootstrap/js/bootstrap.js"></script>
+  var socket = io.connect();
+
+  // Emit ready event.
+  socket.emit('ready', prompt('What is your name?'))
+
+  // Listen for get-feelings event.
+  socket.on('get-feelings', function () {
+      socket.emit('send-feelings', prompt('How do you feel?'));
+  })
+
+  // Listen for session event.
+  socket.on('session', function(data) {
+      message = 'Hey ' + data.name + '!\n\n' 
+      message += 'Server says you feel '+ data.feelings + '\n'
+      message += 'I know these things because sessions work!\n\n'
+      message += 'Also, you joined ' + data.loginDate + '\n'
+      alert(message)
+  })
+</script>
+
+  <script src="static/js/vendor.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
 </body>
 </html>

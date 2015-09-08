@@ -1,0 +1,44 @@
+{
+  "name": "electron",
+  "main": "main.js",
+  "version": "0.1.0",
+  "homepage": "https://github.com/devartblake/Project_Hathor",
+  "authors": [
+    "devartblake <devart.blake@gmail.com>"
+  ],
+  "description": "Cross-platform demonstration application using Electron(formerly atom-shell).",
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5",
+    "jquery": "~2.1.4",
+    "angular-animate": "~1.4.1",
+    "angular-aria": "~1.4.1",
+    "angular-cookies": "~1.4.1",
+    "angular-loader": "~1.4.1",
+    "angular-messages": "~1.4.1",
+    "angular-message-format": "~1.4.1",
+    "angular-resource": "~1.4.1",
+    "angular-route": "~1.4.1",
+    "angular-sanitize": "~1.4.1",
+    "angular-touch": "~1.4.1",
+    "angular-material": "~0.10.0",
+    "angular-uuid2": "*",
+    "angular-signalr-hub": "~1.5.0",
+    "angular-signalr": "~0.3.2",
+    "angular-moment": "~0.10.1",
+    "ngstorage": "~0.3.6",
+    "masonry": "~3.3.0",
+    "typeahead.js": "~0.11.1",
+    "toastr": "~2.1.1"
+  }
+}
